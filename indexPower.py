@@ -11,9 +11,9 @@ Input: Two arguments. An array as a list of integers and a number as a integer.
 
 Output: The result as an integer.
 
-Precondition: 0 < len(array) ≤ 10
-0 ≤ N
-all(0 ≤ x ≤ 100 for x in array)
+Precondition: 0 < len(array) <= 10
+0 <= N
+all(0 <= x <= 100 for x in array)
 '''
 
 def index_power(array, N):

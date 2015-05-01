@@ -19,7 +19,7 @@
 # How it is used: Indexes and slices are important elements of coding in
 # python and other languages. This will come in handy down the road!
 
-# Precondition: 0 ≤ len(array) ≤ 20
+# Precondition: 0 <= len(array) <= 20
 #all(isinstance(x, int) for x in array)
 #all(-100 < x < 100 for x in array)
 

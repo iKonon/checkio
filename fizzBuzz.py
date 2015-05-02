@@ -8,22 +8,20 @@ You should write a function that will receive a positive integer and return:
 The number as a string for other cases.
 
 Input: A number as an integer.
-
 Output: The answer as a string.
 '''
 
-def fizz_buzz(n):
-    if n%15 == 0: # 15 divided by 3 and 15
+def fizzBuzz(n):
+    if n % 15 == 0: # 15 divided by 3 and 15 simultaneously
         return "Fizz Buzz"
-    elif n%3 == 0:
+    elif n % 3 == 0:
         return "Fizz"
-    elif n%5 == 0:
+    elif n % 5 == 0:
         return "Buzz"
     else:
         return None
         
 if __name__ == "__main__":
-    assert(fizz_buzz(15)) == "Fizz Buzz"
-    assert(fizz_buzz(6)) == "Fizz"
-    assert(fizz_buzz(5)) == "Buzz"
-
+    assert(fizzBuzz(15)) == "Fizz Buzz"
+    assert(fizzBuzz(6)) == "Fizz"
+    assert(fizzBuzz(5)) == "Buzz"

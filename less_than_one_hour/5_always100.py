@@ -10,8 +10,19 @@ def getSequences(sequence,digit):
     elif eval(sequence)==100: 
         print(sequence + " = " + str(eval(sequence)))
 
+def getSequencesItertools():
+    from itertools import product
+    results, numbers = [], range(1, 10)
+    for permutation in product(['+','-', ''], repeat=8):
+        tuples = zip(numbers, permutation + ('', ))
+        sequence = ''.join([str(e1) + e2 for (e1, e2) in tuples])
+        if eval(sequence) == 100:
+            results.append(sequence + ' = 100')
+    return results
+
 if __name__ == '__main__':            
     getSequences("1",2)
+    assert len(getSequencesItertools()) == 11
 
 '''
 others:

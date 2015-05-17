@@ -1,6 +1,6 @@
-"""
+'''
 Check if string is palindrome
-"""
+'''
 
 def palindrome(word):
     return word.replace(" ", "") == word.replace(" ", "")[::-1]

@@ -21,14 +21,14 @@ and only modifying one character in the best string so far.
 This is a type of algorithm in the class of 'hill climbing' algorithms, 
 that is we only keep the result if it is better than the previous one.
 '''
+# http://evoinfo.org/weasel.html
+# http://like-a-weasel.blogspot.com
+
 import random
 
 def generate_string(size):
     alphabet = "abcdefghijklmnopqrstuvwxyz "
-    if size == 1:
-        return random.choice(alphabet)
-    else:
-        return "".join(random.choice(alphabet) for _ in range(size))
+    return "".join(random.choice(alphabet) for _ in range(size))
 
 def get_score(goal, guess):
     if guess == goal:
@@ -84,4 +84,5 @@ def smart_monkey(goal):
 
 if __name__ == '__main__':
     goal = "methinks it is like a weasel"
+    print("Monkey is typing to get the following text: %s" % goal)
     print("Well done after %i iterations!" % smart_monkey(goal))

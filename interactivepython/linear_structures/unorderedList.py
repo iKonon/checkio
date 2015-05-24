@@ -12,7 +12,7 @@ class Node:
 
     def getData(self):
         return self.data
-
+    
     def getNext(self):
         return self.next
 
@@ -23,7 +23,7 @@ class Node:
         self.next = newnext
             
     def printBackward(self):
-        if self.next != None:
+        if self.getNext() != None:
             tail = self.getNext()
             tail.printBackward()
         print(self.data, end=" ")     
@@ -31,17 +31,31 @@ class Node:
 class UnorderedList:
     def __init__(self):
         self.head = None    # When the list is first initialized it has no nodes, so the head is set to None
+        self.length = 0
 
+    def __str__(self):      # Python style
+        current = self.head
+        alist = []
+        while current != None:
+            alist.append(current.getData())
+            current = current.getNext()
+        return str(alist)
+    
+    def __len__(self):
+        return self.length
+  
     # This implementation of insert is constant O(1)        
     def add(self,item):
         if not self.head:
-            self.head = Node(item)        
+            self.head = Node(item)
+            self.length += 1        
         else:
             newNode = Node(item)
             newNode.setNext(self.head) # set new nodes pointer to old head
             self.head = newNode        # reset head to new node
-
-    # The time complexity for delete is O(n)
+            self.length += 1
+            
+    # The time complexity for removing is O(n)
     def remove(self,item):
         if self.size() == 0:
             raise ValueError("List is empty")
@@ -59,8 +73,10 @@ class UnorderedList:
                     current = current.getNext()
             if previous is None:
                 self.head = current.getNext()
+                self.length -= 1
             else:
                 previous.setNext(current.getNext())
+                self.length -= 1
 
     # The time complexity of search is O(n)
     def search(self,item):
@@ -80,7 +96,7 @@ class UnorderedList:
         while current != None:
             count += 1
             current = current.getNext()
-        return count    
+        return count  
 
     def isEmpty(self):
         return self.head == None
@@ -93,6 +109,7 @@ class UnorderedList:
             previous = current
             current = current.getNext()
         previous.setNext(temp)
+        self.length += 1
 
     def index(self,item):
         if self.search(item) == False:
@@ -124,20 +141,23 @@ class UnorderedList:
                 current = current.getNext()
             temp.setNext(current)
             previous.setNext(temp)
+            self.length += 1
 
     def pop(self, pos = None):
         if self.isEmpty() == True:
             return "The list is already empty"         
         current = self.head
-        following = current.next      
+        following = current.getNext()      
+        self.length -= 1
         if pos is None:          
             while following != None:
-                if following.next == None:
-                    current.next = None
+                if following.getNext() == None:
+                    current.setNext(None)
                     return following
                 current = following
-                following = following.next
+                following = following.getNext()
             self.head = None
+         
             return current
         
         if pos == 0:
@@ -147,10 +167,10 @@ class UnorderedList:
         index = 0
         while following != None:          
             if index == pos - 1:
-                current.next = following.next
+                current.setNext(following.getNext())
                 return following
             current = following
-            following = following.next
+            following = following.getNext()
             index += 1        
     
     def printForward(self):
@@ -185,13 +205,33 @@ class UnorderedList:
  
     def _reverseRecursive(self,node) :
         if None != node:
-            right = node.next
+            right = node.getNext()
             if self.head != node:
-                node.next = self.head
+                node.setNext(self.head)
                 self.head = node
             else:
-                node.next = None
+                node.setNext(None)
             self._reverseRecursive( right )
+    
+    def getNode(self, pos):
+        current = self.head
+        for _ in range(pos):
+            current = current.getNext()
+        return current
+
+    def slice(self, start, stop): # return a copy of the list starting at the start position and going up to but not including the stop position
+        slicedList = UnorderedList()
+        current = self.getNode(start)
+        last = self.getNode(stop)
+        
+        slicedList.add(current.getData())        
+        current = current.getNext() 
+        
+        while current != last:
+            slicedList.append(current.getData())
+            current = current.getNext() 
+     
+        return slicedList
 
 if __name__ == '__main__':
     temp = Node(93)
@@ -206,25 +246,26 @@ if __name__ == '__main__':
     mylist.add(93)
     mylist.add(26)
     mylist.add(54)
-    print(mylist.size())
+    print(mylist)
+    print(mylist.slice(1, 4))
+    print(mylist.size(), len(mylist))
     print(mylist.search(17))
     mylist.remove(17)
-    print(mylist.size())
+    print(mylist.size(), len(mylist))
     print(mylist.search(17))
     
     mylist.append(2)
-    print(mylist.size())
+    print(mylist.size(), len(mylist))
     print(mylist.index(2))
     
     mylist.insert(1, 43)
-    print(mylist.size())
+    print(mylist.size(), len(mylist))
     print(mylist.index(43))
 
     mylist.pop()
-    print(mylist.size())
+    print(mylist.size(), len(mylist))
     mylist.pop(3)
-    print(mylist.size())
-    
+    print(mylist.size(), len(mylist))
     mylist.printForward()
     mylist.printBackward()  
     

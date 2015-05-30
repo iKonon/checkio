@@ -10,20 +10,22 @@ Let's look at a few examples:
 Input: Two arguments. An array as a list of integers and a number as a integer.
 Output: The result as an integer.
 
-Precondition: 0 < len(array) <= 10; 0 <= N; all(0 <= x <= 100 for x in array)
+How it is used: This mission teaches you how to use basic arrays and indexes when combined with simple mathematics.
+
+Precondition: 0 < len(array) <= 10, 0 <= N, all(0 <= x <= 100 for x in array)
 '''
 
-def indexPower(array, N):
-    if -1 < len(array) > 100 or -1 < N > len(array)-1:
+def index_power(array, n):
+    if -1 < len(array) > 100 or -1 < n > len(array)-1:
         return -1
     else:
-        return array[N]**N
+        return array[n]**n
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
-    assert indexPower([1, 2, 3, 4], 2) == 9
-    assert indexPower([1, 3, 10, 100], 3) == 1000000
-    assert indexPower([0, 1], 0) == 1
-    assert indexPower([1, 2], 3) == -1
-    assert indexPower([96, 92,94], 3) == -1
-    assert indexPower([5], 0) == 1
+    assert index_power([1, 2, 3, 4], 2) == 9, "Square"
+    assert index_power([1, 3, 10, 100], 3) == 1000000, "Cube"
+    assert index_power([0, 1], 0) == 1, "Zero power"
+    assert index_power([1, 2], 3) == -1, "IndexError"
+    assert index_power([96, 92,94], 3) == -1
+    assert index_power([5], 0) == 1

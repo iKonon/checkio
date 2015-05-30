@@ -9,14 +9,28 @@ For example: text = "How are you? Eh, ok. Low or Lower? Ohhh.", if we collect al
 
 Input: A text as a string (unicode).
 Output: The secret message as a string or an empty string.
+
+How it is used: This is a simple exercise in working with strings: iterate, recognize and concatenate.
+
+Precondition: 0 < len(text) <= 1000, all(ch in string.printable for ch in text)
 '''
-import re
-def secretMessage(text):
+
+def find_messageNaive(text):
     # Find a secret message
+    message = []
+    text = text.split()
+    for word in text:
+        for letter in word:
+            if letter.isupper():
+                message.append(letter)
+    return "".join(message)
+
+def find_message(text):
+    import re
     return "".join(re.findall('[A-Z]', text))
 
 if __name__ == '__main__':
-    # These "asserts" using only for self-checking and not necessary for auto-testing
-    assert secretMessage("How are you? Eh, ok. Low or Lower? Ohhh.") == "HELLO"
-    assert secretMessage("hello world!") == ""
-    assert secretMessage("HELLO WORLD!!!") == "HELLOWORLD"
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert find_message("How are you? Eh, ok. Low or Lower? Ohhh.") == "HELLO", "hello"
+    assert find_message("hello world!") == "", "Nothing"
+    assert find_message("HELLO WORLD!!!") == "HELLOWORLD", "Capitals"

@@ -16,7 +16,8 @@ Precondition: Dates between 1 january 1 and 31 december 9999. Dates are correct.
 '''
 from datetime import datetime
 
-def daysBetween(date1, date2):
+def days_diff(date1, date2):
+    # Find absolute diff in days between dates
     difference = (datetime(*date2) - datetime(*date1)).days
     if difference < 0:
         return -difference
@@ -24,8 +25,8 @@ def daysBetween(date1, date2):
         return difference
 
 if __name__ == '__main__':
-    assert daysBetween((1982, 4, 19), (1982, 4, 22)) == 3
-    assert daysBetween((2014, 1, 1), (2014, 8, 27)) == 238
-    assert daysBetween((2014, 8, 27), (2014, 1, 1)) == 238
-    assert daysBetween((2015, 5, 22),(2015, 5, 23)) == 1
-    print(daysBetween((1, 1, 1),(9999, 12, 31)))
+    assert days_diff((1982, 4, 19), (1982, 4, 22)) == 3
+    assert days_diff((2014, 1, 1), (2014, 8, 27)) == 238
+    assert days_diff((2014, 8, 27), (2014, 1, 1)) == 238
+    assert days_diff((2015, 5, 22),(2015, 5, 23)) == 1
+    print(days_diff((1, 1, 1),(9999, 12, 31)))

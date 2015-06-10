@@ -17,6 +17,11 @@ def checkio(number):
         if x is not '0':
             output *= int(x)
     return output
+
+def digitsMultiply(n):
+    from operator import mul
+    return reduce(mul, [int(char) for char in str(n)])
+
         
 #These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':

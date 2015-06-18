@@ -4,13 +4,13 @@ between the numbers 1, 2,..., 9 (in this order) such that the result is always 1
 For example: 1 + 2 + 34 - 5 + 67 - 8 + 9 = 100
 '''
 
-def getSequences(sequence,digit):
+def get_sequences(sequence,digit):
     if digit <= 9: 
-        [getSequences(sequence+x+str(digit),digit+1) for x in("+","-","")]
+        [get_sequences(sequence+x+str(digit),digit+1) for x in("+","-","")]
     elif eval(sequence)==100: 
         print(sequence + " = " + str(eval(sequence)))
 
-def getSequencesItertools():
+def get_sequences_itertools():
     from itertools import product
     results, numbers = [], range(1, 10)
     for permutation in product(['+','-', ''], repeat=8):
@@ -21,8 +21,8 @@ def getSequencesItertools():
     return results
 
 if __name__ == '__main__':            
-    getSequences("1",2)
-    assert len(getSequencesItertools()) == 11
+    get_sequences("1",2)
+    assert len(get_sequences_itertools()) == 11
 
 '''
 others:

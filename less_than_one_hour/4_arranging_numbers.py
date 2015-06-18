@@ -4,7 +4,7 @@ arranges them such that they form the largest possible number.
 For example, given [50, 2, 1, 9], the largest formed number is 95021.
 '''
 
-def arrangeMax(array):
+def arrange_max(array):
     def comparison(x,y):
         sx = str(x)
         sy = str(y)
@@ -16,7 +16,7 @@ def arrangeMax(array):
     sorted_array = sorted(array, cmp=comparison)
     return int(''.join([str(n) for n in sorted_array]))
 
-def arrangeMax2(array):    
+def arrange_max2(array):    
     array = sorted(array, reverse=True) #From largest to smallest 
     n = max([len(str(x)) for x in array])
     def concatenation(x):
@@ -27,7 +27,7 @@ def arrangeMax2(array):
     return int(''.join(map(str,array)))
 
 if __name__ == '__main__':
-    assert arrangeMax([50, 2, 1, 9]) == 95021
-    assert arrangeMax([5, 50, 56]) == 56550
-    assert arrangeMax2([50, 2, 1, 9]) == 95021
-    assert arrangeMax2([5, 50, 56]) == 56550    
+    assert arrange_max([50, 2, 1, 9]) == 95021
+    assert arrange_max([5, 50, 56]) == 56550
+    assert arrange_max2([50, 2, 1, 9]) == 95021
+    assert arrange_max2([5, 50, 56]) == 56550    

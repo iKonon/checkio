@@ -1,4 +1,5 @@
-import turtle, random
+import turtle
+import random
 
 def drawSpiral(myTurtle, lineLen):
     if lineLen > 0:
